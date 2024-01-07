@@ -89,6 +89,15 @@ foreach ($unifiedGroup in $unifiedGroups)
         $ownersCount = 0
     }
 
+    if ($unifiedGroup.groupType.count -gt 1)
+    {
+        $groupTypes = $unifiedGroup.groupTypes -join ","
+    }
+    else 
+    {
+        $groupTypes = $unifiedGroup.groupTypes
+    }
+
     $members = Get-MgGroupMember -GroupId $unifiedGroup.ID
 
     $hasPlanner = "Error"
@@ -118,11 +127,12 @@ foreach ($unifiedGroup in $unifiedGroups)
     $group = [PSCustomObject] @{
         GroupId         = $unifiedGroup.Id
         GroupName       = $unifiedGroup.DisplayName
+        groupTypes      = $groupTypes  
         CreatedDateTime = $unifiedGroup.CreatedDateTime
         Mail            = $unifiedGroup.Mail
         Visibility      = $unifiedGroup.Visibility
         Owners          = $owners
-        OwnersCount     = $owners.count
+        OwnersCount     = $ownersCount
         MembersCount    = $members.count
         HasPlanner      = $hasPlanner 
      }
