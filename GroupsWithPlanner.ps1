@@ -58,7 +58,7 @@ catch {
 
 write-host "Gather all unified groups present in Entra ID."
 
-$unifiedGroups = Get-MgGroup -All | where {$_.groupTypes -contains "Unified"}
+$unifiedGroups = Get-MgGroup -All -expandProperty Owners | where {$_.groupTypes -contains "Unified"}
 
 if ($unifiedGroups.count -gt 0)
 {
@@ -81,10 +81,12 @@ foreach ($unifiedGroup in $unifiedGroups)
     if ($unifiedGroup.Owners.count -ge 1)
     {
         $owners = $unifiedGroup.Owners.AdditionalProperties.userPrincipalName -join ","
+        $ownersCount = $unifiedGroup.Owners.count
     }
     else 
     {
-        $owners = @()
+        $owners = "None"
+        $ownersCount = 0
     }
 
     $members = Get-MgGroupMember -GroupId $unifiedGroup.ID
