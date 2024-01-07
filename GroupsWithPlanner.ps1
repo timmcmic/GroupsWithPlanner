@@ -89,7 +89,7 @@ foreach ($unifiedGroup in $unifiedGroups)
         $ownersCount = 0
     }
 
-    if ($unifiedGroup.groupType.count -gt 1)
+    if ($unifiedGroup.groupTypes.count -gt 1)
     {
         $groupTypes = $unifiedGroup.groupTypes -join ","
     }
