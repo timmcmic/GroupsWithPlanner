@@ -82,17 +82,31 @@ foreach ($unifiedGroup in $unifiedGroups)
 
     $members = Get-MgGroupMember -GroupId $unifiedGroup.ID
 
-    $hasPlanner = $FALSE
+    $hasPlanner = "Error"
 
     write-host "Determine if the group has any plans assigned to it..."
 
     try {
-        Get-MGGroupPlannerPlan -groupID $unifiedGroup.id -errorAction Stop
+        $plans = Get-MGGroupPlannerPlan -groupID $unifiedGroup.id -errorAction Stop
+
+        write-host "Able to execute planner graph command."
+
+        if ($plans.count -gt 0)
+        {
+            write-host "Group has one or more plans."
+            $hasPlans = "Yes"
+        }
+        else 
+        {
+            write-host "Group does not have any plans."
+            $hasPlans = "No"
+        }
+
         write-host "Group has planner..."
         $hasPlanner = $true
     }
     catch {
-       write-host "Group does not have planner..."
+       write-host "Error obtaining planner information - this could be by design or access denied etc - usually means no plan present..."
        $hasPlanner = $FALSE
     }
 
