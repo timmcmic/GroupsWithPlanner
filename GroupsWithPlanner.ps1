@@ -78,7 +78,14 @@ foreach ($unifiedGroup in $unifiedGroups)
 
     write-host ("Procesing group object id: "+$unifiedGroup.id)
 
-    $owners = $unifiedGroup.Owners.AdditionalProperties.userPrincipalName -join ","
+    if ($unifiedGroup.Owners.count -ge 1)
+    {
+        $owners = $unifiedGroup.Owners.AdditionalProperties.userPrincipalName -join ","
+    }
+    else 
+    {
+        $owners = 0
+    }
 
     $members = Get-MgGroupMember -GroupId $unifiedGroup.ID
 
