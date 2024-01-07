@@ -89,14 +89,7 @@ foreach ($unifiedGroup in $unifiedGroups)
         $ownersCount = 0
     }
 
-    if ($unifiedGroup.groupTypes.count -gt 1)
-    {
-        $groupTypes = $unifiedGroup.groupTypes -join ","
-    }
-    else 
-    {
-        $groupTypes = $unifiedGroup.groupTypes
-    }
+    $groupTypes = $unifiedGroup.groupTypes -join ","
 
     $members = Get-MgGroupMember -GroupId $unifiedGroup.ID
 
