@@ -84,7 +84,7 @@ foreach ($unifiedGroup in $unifiedGroups)
     }
     else 
     {
-        $owners = 0
+        $owners = @()
     }
 
     $members = Get-MgGroupMember -GroupId $unifiedGroup.ID
