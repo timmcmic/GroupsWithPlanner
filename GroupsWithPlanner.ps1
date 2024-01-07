@@ -101,9 +101,6 @@ foreach ($unifiedGroup in $unifiedGroups)
             write-host "Group does not have any plans."
             $hasPlans = "No"
         }
-
-        write-host "Group has planner..."
-        $hasPlanner = $true
     }
     catch {
        write-host "Error obtaining planner information - this could be by design or access denied etc - usually means no plan present..."
