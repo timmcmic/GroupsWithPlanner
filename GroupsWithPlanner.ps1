@@ -94,12 +94,12 @@ foreach ($unifiedGroup in $unifiedGroups)
         if ($plans.count -gt 0)
         {
             write-host "Group has one or more plans." -ForegroundColor Green
-            $hasPlans = "Yes"
+            $hasPlanner = "Yes"
         }
         else 
         {
             write-host "Group does not have any plans." -ForegroundColor Yellow
-            $hasPlans = "No"
+            $hasPlanner = "No"
         }
     }
     catch {
