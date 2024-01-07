@@ -93,17 +93,17 @@ foreach ($unifiedGroup in $unifiedGroups)
 
         if ($plans.count -gt 0)
         {
-            write-host "Group has one or more plans."
+            write-host "Group has one or more plans." -ForegroundColor Green
             $hasPlans = "Yes"
         }
         else 
         {
-            write-host "Group does not have any plans."
+            write-host "Group does not have any plans." -ForegroundColor Yellow
             $hasPlans = "No"
         }
     }
     catch {
-       write-host "Error obtaining planner information - this could be by design or access denied etc - usually means no plan present..."
+       write-host "Error obtaining planner information - this could be by design or access denied etc - usually means no plan present..." -ForegroundColor Red
        $hasPlanner = $FALSE
     }
 
@@ -120,4 +120,6 @@ foreach ($unifiedGroup in $unifiedGroups)
      }
 
      $unifiedGroupsObjects += $group
+
+     $unifiedGroupsObjects | Export-Csv .\groupsPlannerInformation.csv
 }
