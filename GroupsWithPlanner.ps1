@@ -104,7 +104,6 @@ foreach ($unifiedGroup in $unifiedGroups)
     }
     catch {
        write-host "Error obtaining planner information - this could be by design or access denied etc - usually means no plan present..." -ForegroundColor Red
-       $hasPlanner = $FALSE
     }
 
     $group = [PSCustomObject] @{
