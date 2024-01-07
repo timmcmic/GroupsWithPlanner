@@ -128,6 +128,6 @@ foreach ($unifiedGroup in $unifiedGroups)
      }
 
      $unifiedGroupsObjects += $group
-
-     $unifiedGroupsObjects | Export-Csv .\groupsPlannerInformation.csv
 }
+
+$unifiedGroupsObjects | Export-Csv .\groupsPlannerInformation.csv
